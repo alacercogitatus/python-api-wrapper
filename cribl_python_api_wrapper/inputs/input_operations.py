@@ -115,6 +115,8 @@ def delete_input(base_url, cribl_auth_token, input_id, worker_group=None, fleet=
             group = worker_group
         elif fleet is not None and worker_group is None:
             group = fleet
+        elif worker_group is None and fleet is None:
+            group = None
         else:
             raise Exception("Worker group and fleet were both set; operation can be performed on only one worker group"
                             " or fleet at a time.")
