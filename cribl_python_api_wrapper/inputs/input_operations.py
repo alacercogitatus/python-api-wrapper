@@ -12,6 +12,8 @@ def get_inputs(base_url, cribl_auth_token, worker_group=None, fleet=None, verify
             group = worker_group
         elif fleet is not None and worker_group is None:
             group = fleet
+        elif worker_group is None and fleet is None:
+            group = None
         else:
             raise Exception("Worker group and fleet were both set; operation can be performed on only one worker group"
                             " or fleet at a time.")
@@ -37,6 +39,8 @@ def get_input_by_id(base_url, cribl_auth_token, input_id, worker_group=None, fle
             group = worker_group
         elif fleet is not None and worker_group is None:
             group = fleet
+        elif worker_group is None and fleet is None:
+            group = None
         else:
             raise Exception("Worker group and fleet were both set; operation can be performed on only one worker group"
                             " or fleet at a time.")
@@ -68,6 +72,8 @@ def create_input(base_url, cribl_auth_token, create_config, worker_group=None, f
             group = worker_group
         elif fleet is not None and worker_group is None:
             group = fleet
+        elif worker_group is None and fleet is None:
+            group = None
         else:
             raise Exception("Worker group and fleet were both set; operation can be performed on only one worker group"
                             " or fleet at a time.")
@@ -92,6 +98,8 @@ def update_input(base_url, cribl_auth_token, input_id, update_config, worker_gro
             group = worker_group
         elif fleet is not None and worker_group is None:
             group = fleet
+        elif worker_group is None and fleet is None:
+            group = None
         else:
             raise Exception("Worker group and fleet were both set; operation can be performed on only one worker group"
                             " or fleet at a time.")
@@ -143,6 +151,8 @@ def get_input_statuses(base_url, cribl_auth_token, worker_group=None, fleet=None
             group = worker_group
         elif fleet is not None and worker_group is None:
             group = fleet
+        elif worker_group is None and fleet is None:
+            group = None
         else:
             raise Exception("Worker group and fleet were both set; operation can be performed on only one worker group"
                             " or fleet at a time.")
@@ -169,6 +179,8 @@ def get_input_status_by_id(base_url, cribl_auth_token, input_name, worker_group=
             group = worker_group
         elif fleet is not None and worker_group is None:
             group = fleet
+        elif worker_group is None and fleet is None:
+            group = None
         else:
             raise Exception("Worker group and fleet were both set; operation can be performed on only one worker group"
                             " or fleet at a time.")

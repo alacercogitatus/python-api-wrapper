@@ -36,6 +36,8 @@ def get_pipeline_by_id(base_url, cribl_auth_token, pipeline_id, worker_group=Non
             group = worker_group
         elif fleet is not None and worker_group is None:
             group = fleet
+        elif worker_group is None and fleet is None:
+            group = None
         else:
             raise Exception("Worker group and fleet were both set; operation can be performed on only one worker group"
                             " or fleet at a time.")
@@ -60,6 +62,8 @@ def create_pipeline(base_url, cribl_auth_token, create_config, worker_group=None
             group = worker_group
         elif fleet is not None and worker_group is None:
             group = fleet
+        elif worker_group is None and fleet is None:
+            group = None
         else:
             raise Exception("Worker group and fleet were both set; operation can be performed on only one worker group"
                             " or fleet at a time.")
@@ -83,6 +87,8 @@ def update_pipeline(base_url, cribl_auth_token, pipeline_id, update_config, work
             group = worker_group
         elif fleet is not None and worker_group is None:
             group = fleet
+        elif worker_group is None and fleet is None:
+            group = None
         else:
             raise Exception("Worker group and fleet were both set; operation can be performed on only one worker group"
                             " or fleet at a time.")
@@ -105,6 +111,8 @@ def delete_pipeline(base_url, cribl_auth_token, pipeline_id, worker_group=None, 
             group = worker_group
         elif fleet is not None and worker_group is None:
             group = fleet
+        elif worker_group is None and fleet is None:
+            group = None
         else:
             raise Exception("Worker group and fleet were both set; operation can be performed on only one worker group"
                             " or fleet at a time.")

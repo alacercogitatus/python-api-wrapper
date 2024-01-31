@@ -35,6 +35,8 @@ def get_routes_by_id(base_url, cribl_auth_token, route_id, worker_group=None, fl
             group = worker_group
         elif fleet is not None and worker_group is None:
             group = fleet
+        elif worker_group is None and fleet is None:
+            group = None
         else:
             raise Exception("Worker group and fleet were both set; operation can be performed on only one worker group"
                             " or fleet at a time.")
@@ -113,6 +115,9 @@ def replace_route_table(base_url, cribl_auth_token, new_route_table_config, work
         elif fleet is not None and worker_group is None:
             return _update_routes(base_url=base_url, cribl_auth_token=cribl_auth_token, config=new_route_table_config,
                                   fleet=fleet, verify=verify)
+        elif worker_group is None and fleet is None:
+            return _update_routes(base_url=base_url, cribl_auth_token=cribl_auth_token, config=new_route_table_config,
+                                  worker_group=None, verify=verify)
         else:
             raise Exception("Worker group and fleet were both set; operation can be performed on only one worker group"
                             " or fleet at a time.")

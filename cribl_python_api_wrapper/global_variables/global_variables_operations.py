@@ -40,6 +40,8 @@ def get_global_variable_by_id(base_url, cribl_auth_token, global_variable_id, wo
             group = worker_group
         elif fleet is not None and worker_group is None:
             group = fleet
+        elif worker_group is None and fleet is None:
+            group = None
         else:
             raise Exception("Worker group and fleet were both set; operation can be performed on only one worker group"
                             " or fleet at a time.")
@@ -71,6 +73,8 @@ def create_global_variable(base_url, cribl_auth_token, create_config, worker_gro
             group = worker_group
         elif fleet is not None and worker_group is None:
             group = fleet
+        elif worker_group is None and fleet is None:
+            group = None
         else:
             raise Exception("Worker group and fleet were both set; operation can be performed on only one worker group"
                             " or fleet at a time.")
@@ -96,6 +100,8 @@ def update_global_variable(base_url, cribl_auth_token, global_variable_id, updat
             group = worker_group
         elif fleet is not None and worker_group is None:
             group = fleet
+        elif worker_group is None and fleet is None:
+            group = None
         else:
             raise Exception("Worker group and fleet were both set; operation can be performed on only one worker group"
                             " or fleet at a time.")
@@ -120,6 +126,8 @@ def delete_global_variable(base_url, cribl_auth_token, global_variable_id, worke
             group = worker_group
         elif fleet is not None and worker_group is None:
             group = fleet
+        elif worker_group is None and fleet is None:
+            group = None
         else:
             raise Exception("Worker group and fleet were both set; operation can be performed on only one worker group"
                             " or fleet at a time.")

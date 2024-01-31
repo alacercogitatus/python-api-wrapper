@@ -30,6 +30,8 @@ def create_lookup(base_url, cribl_auth_token, create_config, worker_group=None, 
             group = worker_group
         elif fleet is not None and worker_group is None:
             group = fleet
+        elif fleet is None and worker_group is None:
+            group = None
         else:
             raise Exception("Worker group and fleet were both set; operation can be performed on only one worker group"
                             " or fleet at a time.")
@@ -54,6 +56,8 @@ def export_lookup_file(base_url, cribl_auth_token, lookup_filename, save_to_dire
             group = worker_group
         elif fleet is not None and worker_group is None:
             group = fleet
+        elif fleet is None and worker_group is None:
+            group = None
         else:
             raise Exception("Worker group and fleet were both set; operation can be performed on only one worker group"
                             " or fleet at a time.")
@@ -84,6 +88,8 @@ def upload_lookup_file(base_url, cribl_auth_token, lookup_file, worker_group=Non
             group = worker_group
         elif fleet is not None and worker_group is None:
             group = fleet
+        elif fleet is None and worker_group is None:
+            group = None
         else:
             raise Exception("Worker group and fleet were both set; operation can be performed on only one worker group"
                             " or fleet at a time.")
@@ -91,7 +97,7 @@ def upload_lookup_file(base_url, cribl_auth_token, lookup_file, worker_group=Non
             return put(base_url + "/m/" + group + "/system/lookups?filename=" + os.path.basename(lookup_file),
                        headers=headers, data=open(lookup_file, 'rb'), verify=verify, use_session=use_session)
         else:
-            return put(base_url + "/system/lookups?filename=" + + os.path.basename(lookup_file),
+            return put(base_url + "/system/lookups?filename=" + os.path.basename(lookup_file),
                        headers=headers, data=open(lookup_file, 'rb'), verify=verify, use_session=use_session)
     except Exception as e:
         raise Exception("General exception raised while attempting to create lookup: %s " % str(e))
