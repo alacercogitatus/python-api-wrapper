@@ -22,7 +22,7 @@ def export_pack_merge_safe(base_url, cribl_auth_token, pack_id, save_to_director
             response = get(base_url + "/m/" + group + "/packs/" + pack_id + "/export?mode=merge_safe",
                            headers=headers, payload=payload, verify=verify, use_session=use_session)
         else:
-            response = get(base_url + "/packs/" + pack_id + "export?mode=merge_safe",
+            response = get(base_url + "/packs/" + pack_id + "/export?mode=merge_safe",
                            headers=headers, payload=payload, verify=verify, use_session=use_session)
 
         if response.status_code == 200:
@@ -68,13 +68,14 @@ def export_pack_merge(base_url, cribl_auth_token, pack_id, save_to_directory, wo
     return response
 
 
-def get_pack_list(base_url, cribl_auth_token, worker_group=None, fleet=None, group=None, verify=True,
+def get_pack_list(base_url, cribl_auth_token, worker_group=None, fleet=None, verify=True,
                   use_session=False):
     headers = {"Content-type": "application/json",
                "Authorization": "Bearer " + cribl_auth_token}
     payload = None
 
     try:
+        group = None
         if worker_group is not None and fleet is None:
             group = worker_group
         elif fleet is not None and worker_group is None:
